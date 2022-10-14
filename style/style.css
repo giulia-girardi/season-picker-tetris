@@ -2,9 +2,10 @@ canvas {
     border: 1px solid black
 }
 
-#responsive-canvas {
+#canvas {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    visibility: hidden;
 }
