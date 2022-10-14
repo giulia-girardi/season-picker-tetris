@@ -1,1 +1,1 @@
-# season-picker-tetris
+# Season Picker Tetris
