@@ -11,200 +11,6 @@ let fruitImageWidth = 40;
 let fruitImageHeight = 40
 let seasonBlockHeight = 40;
 
-
-// image importing 
-const apple = new Image;
-apple.src = './style/images/apple.png'
-apple.classList.add('spring')
-apple.classList.add('autumn')
-const apricot = new Image;
-apricot.src = './style/images/apricot.png'
-apricot.classList.add('spring')
-apricot.classList.add('summer')
-const avocado = new Image;
-avocado.src = './style/images/avocado.png'
-avocado.classList.add('winter')
-const banana = new Image;
-banana.src = './style/images/banana.png'
-banana.classList.add('spring')
-banana.classList.add('summer')
-banana.classList.add('autumn')
-banana.classList.add('winter')
-const blackberry = new Image;
-blackberry.src = './style/images/blackberry.png'
-blackberry.classList.add('summer')
-const blueberry = new Image;
-blueberry.src = './style/images/blueberry.png'
-blueberry.classList.add('summer')
-const cherries = new Image;
-cherries.src = './style/images/cherries.png'
-const coconut = new Image;
-coconut.src = './style/images/coconut.png'
-coconut.classList.add('spring')
-const currant = new Image;
-currant.src = './style/images/currant.png'
-const custardapple = new Image;
-custardapple.src = './style/images/custard-apple.png'
-const dragonfruit = new Image;
-dragonfruit.src = './style/images/dragonfruit.png'
-const fig = new Image;
-fig.src = './style/images/fig.png'
-const grapefruit = new Image;
-grapefruit.src = './style/images/grapefruit.png'
-const grapes = new Image;
-grapes.src = './style/images/grapes.png'
-const khaki = new Image;
-khaki.src = './style/images/khaki.png'
-const kiwi = new Image;
-kiwi.src = './style/images/kiwi.png'
-const lemon = new Image;
-lemon.src = './style/images/lemon.png'
-const lime = new Image;
-lime.src = './style/images/lime.png'
-const lychee = new Image;
-lychee.src = './style/images/lychee.png'
-const mango = new Image;
-mango.src = './style/images/mango.png'
-const medlar = new Image;
-medlar.src = './style/images/medlar.png'
-const melon = new Image;
-melon.src = './style/images/melon.png'
-const olives = new Image;
-olives.src = './style/images/olives.png'
-const orange = new Image;
-orange.src = './style/images/orange.png'
-const papaya = new Image;
-papaya.src = './style/images/papaya.png'
-const passionfruit = new Image;
-papaya.src = './style/images/passion-fruit.png'
-const peach = new Image;
-peach.src = './style/images/peach.png'
-const pear = new Image;
-pear.src = './style/images/pear.png'
-const pineapple = new Image;
-pineapple.src = './style/images/pineapple.png'
-const plum = new Image;
-plum.src = './style/images/plum.png'
-const pomegranate = new Image;
-pomegranate.src = './style/images/pomegranate.png'
-const raspberry = new Image;
-raspberry.src = './style/images/raspberry.png'
-const starapple = new Image;
-starapple.src = './style/images/star-apple.png'
-const strawberry = new Image;
-strawberry.src = './style/images/strawberry.png'
-const tangerine = new Image;
-tangerine.src = './style/images/tangerine.png'
-const watermelon = new Image;
-watermelon.src = './style/images/watermelon.png'
-
-////// creating the fruit array
-/* const fruitsArray = [
-    {
-        img: apple,
-        x: canvas.width / 2 - 20,
-        y: 0,
-        season: 'spring',
-        moveImageDown: function () {
-            if (this.y + fruitImageHeight <= canvas.height - seasonBlockHeight) {
-                 this.y += 1;
-            }
-         },
-         moveLeft: function () {
-            if (fruitImageX > 0) {
-                fruitImageX -= 3;
-            }
-        },
-    },
-/*     {
-        img: apricot,
-        x: canvas.width / 2 - 20,
-        y: 0,
-        season: 'spring',
-    },
-    {
-        img: avocado,
-        x: canvas.width / 2 - 20,
-        y: 0,
-        season: 'spring',
-    }, 
-    {
-        img: banana,
-        x: canvas.width / 2 - 20,
-        y: 0,
-        season: 'spring',
-        moveImageDown: function () {
-            if (this.y + fruitImageHeight <= canvas.height - seasonBlockHeight) {
-                 this.y += 1;
-            }
-        },
-        moveLeft: function () {
-            if (fruitImageX > 0) {
-                fruitImageX -= 3;
-            }
-        }
-    },
-    {
-        img: blackberry,
-        x: canvas.width / 2 - 20,
-        y: 0,
-        season: 'spring',
-        moveImageDown: function () {
-            if (this.y + fruitImageHeight <= canvas.height - seasonBlockHeight) {
-                 this.y += 1;
-            }
-        },
-        moveLeft: function () {
-            if (this.x > 0) {
-                this.x -= 3;
-            }
-        }
-    },
-    {
-        img: blueberry,
-        x: canvas.width / 2 - 20,
-        y: 0,
-        season: 'spring',
-        moveImageDown: function () {
-            if (this.y + fruitImageHeight <= canvas.height - seasonBlockHeight) {
-                 this.y += 1;
-            }
-         },
-        moveLeft: function () {
-            if (fruitImageX > 0) {
-                fruitImageX -= 3;
-            }
-        }
-    },
-    {
-        img: cherries,
-        x: canvas.width / 2 - 20,
-        y: 0,
-        season: 'spring',
-        moveImageDown: function () {
-            if (this.y + fruitImageHeight <= canvas.height - seasonBlockHeight) {
-                 this.y += 1;
-            }
-         },
-        moveLeft: function () {
-            if (fruitImageX > 0) {
-                fruitImageX -= 3;
-            }
-        }
-    },
-/*     {
-        img: coconut,
-        x: canvas.width / 2 - 20,
-        y: 0,
-        season: 'spring',
-        moveImageDown: function () {
-           if (this.y + fruitImageHeight <= canvas.height - seasonBlockHeight) {
-                this.y += 1;
-           }
-        }
-    } */
-
-
 ///// creating the fruit class 
 class Fruit {
     constructor(name) {
@@ -241,11 +47,51 @@ class Fruit {
     }
 }
 
-let bareFruitArray = ['apple', 'apricot', 'avocado'];
+let bareFruitArray = ['apple', 'apricot', 'avocado', 'banana', 'blackberry', 'blueberry', 'cherries', 'coconut', 'currant', 'custardapple', 'dragonfruit', 'fig', 'grapefruit', 'grapes', 'khaki', 'kiwi', 'lemon', 'lime', 'lychee', 'mango', 'medlar', 'melon', 'olives', 'orgage', 'papaya', 'passionfruit', 'peach', 'pear', 'pineapple', 'plum', 'pomegranate', 'raspberry', 'strawberry', 'tangerine', 'watermelon'];
 let fruitArray = [];
 bareFruitArray.forEach ((name) => {
     fruitArray.push(new Fruit(name))
 })
+
+/// define seasons 
+const Season = { 
+    'apple': ['autumn', 'winter'],
+    'apricot': ['spring', 'summer'],
+    'avocado': ['autumn', 'winter', 'spring'],
+    'banana': ['spring', 'summer', 'autumn', 'winter'],
+    'blackberry': ['summer'],
+    'blueberry': ['spring', 'summer'],
+    'cherries': ['spring', 'summer'],
+    'coconut': ['spring', 'summer'],
+    'currant': ['summer'],
+    'custardapple': ['winter'],
+    'dragonfruit': ['summer'],
+    'fig': ['summer'],
+    'grapefruit': ['winter', 'spring'],
+    'grapes': ['autumn'],
+    'khaki': ['autumn'],
+    'kiwi': ['autumn', 'winter'],
+    'lemon': ['spring', 'autumn', 'winter'],
+    'lime': ['autumn'],
+    'lychee': ['spring', 'summer'],
+    'mango': ['autumn', 'summer'],
+    'medlar': ['spring'],
+    'melon': ['summer'],
+    'olives': ['autumn'],
+    'orange': ['spring', 'autumn', 'winter'],
+    'papaya': ['autumn', 'winter', 'spring'],
+    'passionfruit': ['spring', 'summer'],
+    'peach': ['spring', 'summer'],
+    'pear': ['summer', 'autumn', 'winter'],
+    'pineapple': ['winter', 'spring'],
+    'plum': ['summer'],
+    'pomegranate': ['autumn'],
+    'raspberry': ['autumn', 'winter'],
+    'strawberry': ['spring'],
+    'tangerine': ['autumn', 'winter'],
+    'watermelon': ['summer'],
+}
+
 
 /////// start 
 const start = () => {
@@ -260,15 +106,14 @@ const drawImage = () => {
     }   
 }
 
-/// moving image down / right / left 
-
+/// moving image down / right / left on arrowkey
 document.addEventListener('keydown', event => {
     if (event.key === 'ArrowRight') {
-        moveRight()
+        fruitArray[0].moveRight()
     } else if (event.key === 'ArrowLeft') {
-        moveLeft()
+        fruitArray[0].moveLeft()
     } else if (event.key === 'ArrowDown') {
-        fastDown()
+        fruitArray[0].fastDown()
     }
 })
 
