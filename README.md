@@ -14,6 +14,7 @@ Game is over in case fruit is positioned in the wrong season.
 - Vegetable 
 - Have 3 lives instead of game over on the first error 
 - Make fruit appear from random x
+- Allow to go down faster when arrow down is pressed
 
 
 # Data structure
