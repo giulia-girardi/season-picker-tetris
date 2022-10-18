@@ -10,5 +10,5 @@ canvas {
 }
 
 #gameoverscreen {
-    visibility: hidden;
+    display: none;
 }

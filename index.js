@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
 
 let startButton = document.querySelector('#start')
+let restartButton = document.querySelector('#restart')
 let isGameOver = false;
 let gameId = 0;
 let fruitImageX = canvas.width / 2 - 20;
@@ -30,13 +31,13 @@ class Fruit {
     
     moveLeft() {
         if (this.x > 0) {
-            this.x -= 5;
+            this.x -= 8;
         };
     };
 
     moveRight() {
         if (this.x < (canvas.width - fruitImageWidth)) {
-            this.x += 5;
+            this.x += 8;
         }
     };
     
@@ -47,7 +48,7 @@ class Fruit {
     }
 }
 
-let bareFruitArray = ['apple', 'apricot', 'avocado', 'banana', 'blackberry', 'blueberry', 'cherries', 'coconut', 'currant', 'custardapple', 'dragonfruit', 'fig', 'grapefruit', 'grapes', 'khaki', 'kiwi', 'lemon', 'lime', 'lychee', 'mango', 'medlar', 'melon', 'olives', 'orgage', 'papaya', 'passionfruit', 'peach', 'pear', 'pineapple', 'plum', 'pomegranate', 'raspberry', 'strawberry', 'tangerine', 'watermelon'];
+let bareFruitArray = ['apple', 'apricot', 'avocado', 'banana', 'blackberry', 'blueberry', 'cherries', 'coconut', 'currant', 'custardapple', 'dragonfruit', 'fig', 'grapefruit', 'grapes', 'khaki', 'kiwi', 'lemon', 'lime', 'lychee', 'mango', 'medlar', 'melon', 'olives', 'orange', 'papaya', 'passionfruit', 'peach', 'pear', 'pineapple', 'plum', 'pomegranate', 'raspberry', 'strawberry', 'tangerine', 'watermelon'];
 let fruitArray = [];
 bareFruitArray.forEach ((name) => {
     fruitArray.push(new Fruit(name))
@@ -93,12 +94,13 @@ const Season = {
 }
 
 
-/////// start 
+/////// start
 const start = () => {
     canvas.style.visibility = "visible";
     animate()
 }
 
+///////  draw fruit images
 const drawImage = () => {
     ctx.drawImage(fruitArray[0].image, fruitArray[0].x, fruitArray[0].y, fruitImageWidth, fruitImageHeight)  
     if (fruitArray[0].y + fruitImageHeight > canvas.height - seasonBlockHeight) {
@@ -128,7 +130,6 @@ const drawSeasonBlocks = () => {
     ctx.fillStyle = "lightgray";
     ctx.fillRect(canvas.width/4 * 3, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
 }
-console.log(fruitArray[0]);
 
 /// create motion
 const animate = () => {
@@ -136,32 +137,59 @@ const animate = () => {
     drawSeasonBlocks();
     drawImage();
     fruitArray[0].moveImageDown();
-    console.log(fruitArray[0]);
+    //console.log(fruitArray[0]);
     
-    /// gameover (simple version with 2 areas)
+    /// gameover logic
+    let canvasBottom = canvas.height - seasonBlockHeight;
+    let fruitImageBottom = fruitArray[0].y + fruitImageHeight;
+    let fruitMaxX = fruitArray[0].x + fruitImageWidth;
+    let endSpringBeginSummer = canvas.width / 4;
+    let endSummerBeginAutumn = canvas.width / 2;
+    let endAutumnBeginWinter = canvas.width / 4 * 3;
 
-    /* if ((fruitsArray[index].season == "spring") && (fruitImageY + fruitImageHeight >=  canvas.height - seasonBlockHeight) && (fruitImageX + fruitImageWidth > canvas.width / 4)) {
-        console.log("gameover")
-        isGameOver = true;
-    } else {
-        ctx.font = '48px serif';
-        ctx.fillText('Well done!', 10, 50);
-    } */
 
+    /////
+    
+    if (fruitImageBottom ==  canvasBottom) {
+        let landed = '';
+        if (fruitArray[0].x < endSpringBeginSummer) {
+            landed = 'spring'
+        } else if ((fruitArray[0].x > endSpringBeginSummer) && (fruitMaxX < endSummerBeginAutumn)) {
+            landed = 'summer'
+        } else if ((fruitArray[0].x > endSummerBeginAutumn) && (fruitMaxX < endAutumnBeginWinter)) {
+            landed = 'autumn'
+        } else if (fruitArray[0].x > endAutumnBeginWinter) {
+            landed = 'winter'
+        }
+
+        if (Season[fruitArray[0].name].includes(landed)) {
+            console.log('well done')
+        } else {
+            console.log(`gameover`)
+            isGameOver = true;
+        }
+
+    
+    }
+
+
+
+
+    const gameoverscreen = document.querySelector('#gameoverscreen');
     if (isGameOver) {
         cancelAnimationFrame(gameId);
+        gameoverscreen.style.display = "block";
     } else {
         gameId = requestAnimationFrame(animate);
     }
 }
 
-/// gameover screen
-/* if (isGameOver) {
-    gameoverscreen.visibility = "visible";
-    canvas.visibility = "hidden"
-} */
 
 //// wait to load and if start clicked, start game
 window.onload = () => {
     startButton.addEventListener('click', start)
+    document.getElementById("restart").onclick = () => {
+        console.log("restarting");
+        animate()
+      };
 }
