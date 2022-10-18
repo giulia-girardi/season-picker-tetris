@@ -1,6 +1,7 @@
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
+const startscreen = document.querySelector('#startscreen');
 
 let startButton = document.querySelector('#start')
 let restartButton = document.querySelector('#restart')
@@ -8,8 +9,8 @@ let isGameOver = false;
 let gameId = 0;
 let fruitImageX = canvas.width / 2 - 20;
 let fruitImageY = 0;
-let fruitImageWidth = 40;
-let fruitImageHeight = 40
+let fruitImageWidth = 60;
+let fruitImageHeight = 60
 let seasonBlockHeight = 40;
 
 ///// creating the fruit class 
@@ -96,7 +97,8 @@ const Season = {
 
 /////// start
 const start = () => {
-    canvas.style.visibility = "visible";
+    canvas.style.display = "block";
+    startscreen.style.display = "none";
     animate()
 }
 
@@ -176,6 +178,7 @@ const animate = () => {
     if (isGameOver) {
         cancelAnimationFrame(gameId);
         gameoverscreen.style.display = "block";
+        canvas.style.display = "none";
     } else {
         gameId = requestAnimationFrame(animate);
     }
@@ -187,6 +190,7 @@ window.onload = () => {
     startButton.addEventListener('click', start)
     document.getElementById("restart").onclick = () => {
         console.log("restarting");
+        canvas.style.display = "block";
         isGameOver = false;
         fruitArray = [];
         bareFruitArray.forEach ((name) => {

@@ -14,7 +14,7 @@ body {
     color: #1e202d;
 }
 
-#start-screen {
+#startscreen {
     text-align: center;
     padding: 5% 5%;
     width: 33%;
@@ -43,8 +43,8 @@ p {
 button {
     padding: 10px 25px;
     border-radius: 5px;
-    background-color: #81b29a;
-    border-color: #81b29a;
+    background-color: #71a88d;
+    border-color: #71a88d;
     color: #33354c ;
     margin: 20px 0;
     font-size: 14px;
@@ -54,17 +54,23 @@ button {
 }
 
 #canvas {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
-    visibility: hidden;
     border: 3px solid #33354c ;
     background-color: #f4f1de;
     border-radius: 10px;
+    margin: 7% 0;
 }
 
+img {
+    width: 150px;
+}
 
 #gameoverscreen {
     display: none;
-    padding: 20px 30px;
+    padding: 20% 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
