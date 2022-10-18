@@ -167,6 +167,7 @@ const animate = () => {
         if (Season[fruitArray[0].name].includes(landed)) {
             console.log('well done')
             count = count + 1;
+            console.log(count)
             ctx.font = '48px serif';
             ctx.fillText = ('Well done!', 350, 250)
         } else {
@@ -192,6 +193,7 @@ window.onload = () => {
         console.log("restarting");
         canvas.style.display = "block";
         isGameOver = false;
+        count = 0;
         fruitArray = [];
         bareFruitArray.forEach ((name) => {
             fruitArray.push(new Fruit(name))
