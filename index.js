@@ -133,6 +133,7 @@ const drawSeasonBlocks = () => {
     ctx.fillRect(canvas.width/4 * 3, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
 }
 
+let count = 0;
 
 /// create motion
 const animate = () => {
@@ -150,7 +151,6 @@ const animate = () => {
     let endSummerBeginAutumn = canvas.width / 2;
     let endAutumnBeginWinter = canvas.width / 4 * 3;
 
-    let count = 0;
     ///// win and lose logic
     if (fruitImageBottom ==  canvasBottom) {
         let landed = '';
@@ -167,9 +167,8 @@ const animate = () => {
         if (Season[fruitArray[0].name].includes(landed)) {
             console.log('well done')
             count = count + 1;
-            console.log(count)
             ctx.font = '48px serif';
-            ctx.fillText('Well done!', 350, 250); 
+            ctx.fillText = ('Well done!', 350, 250)
         } else {
             console.log(`gameover`)
             isGameOver = true;
