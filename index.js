@@ -133,12 +133,23 @@ const drawSeasonBlocks = () => {
     ctx.fillRect(canvas.width/4 * 3, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
 }
 
+///// display score
+const displayScore = () => {
+    ctx.fillStyle = "black";
+    ctx.font = 'bold 18px Arial';
+    ctx.fillText("text", 350, 250)
+}
+
+
 let count = 0;
+let score = document.querySelector('.score')
+//console.log(score)
 
 /// create motion
 const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawSeasonBlocks();
+    displayScore()
     drawImage();
     fruitArray[0].moveImageDown();
     //console.log(fruitArray[0]);
@@ -167,9 +178,13 @@ const animate = () => {
         if (Season[fruitArray[0].name].includes(landed)) {
             console.log('well done')
             count = count + 1;
-            console.log(count)
-            ctx.font = '48px serif';
-            ctx.fillText = ('Well done!', 350, 250)
+            score.innerText = count;
+            //console.log('score:' + score)
+            console.log('count:' + count)
+            //console.log(score)
+
+            /* ctx.font = '48px serif';
+            ctx.fillText = ('Well done!', 350, 250) */
         } else {
             console.log(`gameover`)
             isGameOver = true;
@@ -185,6 +200,9 @@ const animate = () => {
         gameId = requestAnimationFrame(animate);
     }
 }
+
+
+
 
 //// wait to load and if start clicked, start game
 window.onload = () => {
