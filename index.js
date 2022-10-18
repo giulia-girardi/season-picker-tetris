@@ -6,8 +6,6 @@ let startButton = document.querySelector('#start')
 let restartButton = document.querySelector('#restart')
 let isGameOver = false;
 let gameId = 0;
-let fruitImageX = canvas.width / 2 - 20;
-let fruitImageY = 0;
 let fruitImageWidth = 40;
 let fruitImageHeight = 40
 let seasonBlockHeight = 40;
@@ -146,9 +144,6 @@ const animate = () => {
     let endSpringBeginSummer = canvas.width / 4;
     let endSummerBeginAutumn = canvas.width / 2;
     let endAutumnBeginWinter = canvas.width / 4 * 3;
-
-
-    /////
     
     if (fruitImageBottom ==  canvasBottom) {
         let landed = '';
@@ -168,18 +163,14 @@ const animate = () => {
             console.log(`gameover`)
             isGameOver = true;
         }
-
-    
     }
-
-
-
 
     const gameoverscreen = document.querySelector('#gameoverscreen');
     if (isGameOver) {
         cancelAnimationFrame(gameId);
         gameoverscreen.style.display = "block";
     } else {
+        console.log("let's see")
         gameId = requestAnimationFrame(animate);
     }
 }
@@ -188,8 +179,17 @@ const animate = () => {
 //// wait to load and if start clicked, start game
 window.onload = () => {
     startButton.addEventListener('click', start)
-    document.getElementById("restart").onclick = () => {
-        console.log("restarting");
-        animate()
-      };
+
 }
+document.getElementById("restart").onclick = () => {
+    console.log("restarting");
+    //fruitArray[0].x = canvas.width / 2 - 20;
+    //fruitArray[0].y = 0;
+    fruitArray = [];
+    bareFruitArray.forEach ((name) => {
+        fruitArray.push(new Fruit(name))
+    })
+    isGameOver = false;
+    gameoverscreen.style.display = "none";
+    animate()
+};
