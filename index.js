@@ -133,6 +133,7 @@ const drawSeasonBlocks = () => {
     ctx.fillRect(canvas.width/4 * 3, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
 }
 
+
 /// create motion
 const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -140,7 +141,7 @@ const animate = () => {
     drawImage();
     fruitArray[0].moveImageDown();
     //console.log(fruitArray[0]);
-    
+
     /// gameover logic
     let canvasBottom = canvas.height - seasonBlockHeight;
     let fruitImageBottom = fruitArray[0].y + fruitImageHeight;
@@ -149,9 +150,8 @@ const animate = () => {
     let endSummerBeginAutumn = canvas.width / 2;
     let endAutumnBeginWinter = canvas.width / 4 * 3;
 
-
-    /////
-    
+    let count = 0;
+    ///// win and lose logic
     if (fruitImageBottom ==  canvasBottom) {
         let landed = '';
         if (fruitArray[0].x < endSpringBeginSummer) {
@@ -166,12 +166,14 @@ const animate = () => {
 
         if (Season[fruitArray[0].name].includes(landed)) {
             console.log('well done')
+            count = count + 1;
+            console.log(count)
+            ctx.font = '48px serif';
+            ctx.fillText('Well done!', 350, 250); 
         } else {
             console.log(`gameover`)
             isGameOver = true;
-        }
-
-    
+        }    
     }
 
     const gameoverscreen = document.querySelector('#gameoverscreen');
@@ -183,7 +185,6 @@ const animate = () => {
         gameId = requestAnimationFrame(animate);
     }
 }
-
 
 //// wait to load and if start clicked, start game
 window.onload = () => {
