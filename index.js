@@ -172,9 +172,6 @@ const animate = () => {
     
     }
 
-
-
-
     const gameoverscreen = document.querySelector('#gameoverscreen');
     if (isGameOver) {
         cancelAnimationFrame(gameId);
@@ -190,6 +187,12 @@ window.onload = () => {
     startButton.addEventListener('click', start)
     document.getElementById("restart").onclick = () => {
         console.log("restarting");
+        isGameOver = false;
+        fruitArray = [];
+        bareFruitArray.forEach ((name) => {
+            fruitArray.push(new Fruit(name))
+        })
+        gameoverscreen.style.display = "none";
         animate()
-      };
+    }
 }
