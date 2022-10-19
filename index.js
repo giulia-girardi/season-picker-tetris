@@ -20,7 +20,7 @@ class Fruit {
         this.image = new Image;
         this.image.src = `./style/images/${name}.png`;
         this.x = canvas.width / 2 - 20;
-        this.y = 0;
+        this.y = -100;
         this.season = '';
     }
 
@@ -125,21 +125,61 @@ document.addEventListener('keydown', event => {
 const drawSeasonBlocks = () => {
     ctx.fillStyle = "pink";
     ctx.fillRect(0, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
+    ctx.fillStyle = "#1e202d";
+    ctx.textBaseline='middle';
+    ctx.textAlign='center';
+    ctx.font = '18px monospace';
+    ctx.fillText('Spring', (canvas.width/4) / 2, canvas.height - (seasonBlockHeight / 2))
     ctx.fillStyle = "orange";
     ctx.fillRect(canvas.width/4, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
+    ctx.fillStyle = "#1e202d";
+    ctx.textBaseline='middle';
+    ctx.textAlign='center';
+    ctx.font = '18px monospace';
+    ctx.fillText('Summer', (canvas.width / 2 / 4 * 3), canvas.height - (seasonBlockHeight / 2))
     ctx.fillStyle = "brown";
     ctx.fillRect(canvas.width/4 * 2, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
+    ctx.fillStyle = "#1e202d";
+    ctx.textBaseline='middle';
+    ctx.textAlign='center';
+    ctx.font = '18px monospace';
+    ctx.fillText('Autumn', (canvas.width / 2 / 4 * 5), canvas.height - (seasonBlockHeight / 2))
     ctx.fillStyle = "lightgray";
     ctx.fillRect(canvas.width/4 * 3, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
+    ctx.fillStyle = "#1e202d";
+    ctx.textBaseline='middle';
+    ctx.textAlign='center';
+    ctx.font = '18px monospace';
+    ctx.fillText('Winter', (canvas.width - canvas.width / 4 / 2), canvas.height - (seasonBlockHeight / 2))
 }
-
-
 
 let count = 0;
 let score = document.querySelector('.score')
 let maxScore = 0;
 let maxScorePlace = document.querySelector('.maxscore');
-//console.log(score)
+
+//// display positive feedback if user gets it right 
+let displayPositiveFeedback = false;
+
+const positiveFeedback = () => {
+    ctx.fillStyle = "#1e202d";
+    ctx.font = '18px monospace';
+    ctx.textAlign='center';
+    ctx.textBaseline='top';
+    ctx.fillText(`Score: ${count}`, 400, 15)
+    ctx.fillText(`Max score: ${maxScore}`, 357, 40)
+}
+
+const disappearText = () => {
+    displayPositiveFeedback = false;
+}
+
+if (displayPositiveFeedback === true) {
+    console.log("always true")
+    setTimeout(disappearText, 3000)
+    positiveFeedback()    
+}
+
 
 /// create motion
 const animate = () => {
@@ -148,6 +188,7 @@ const animate = () => {
     displayScore()
     drawImage();
     fruitArray[0].moveImageDown();
+
     //console.log(fruitArray[0]);
 
     /// gameover logic
@@ -179,12 +220,8 @@ const animate = () => {
                 maxScorePlace.innerText = maxScore;
             }
             score.innerText = count;
-            //console.log('score:' + score)
-            console.log('count:' + count)
-            //console.log(score)
-
-            ctx.font = '48px serif';
-            ctx.fillText('Well done!', 350, 250)
+            displayPositiveFeedback = true;
+            console.log(displayPositiveFeedback)
         } else {
             console.log(`gameover`)
             isGameOver = true;
@@ -203,7 +240,7 @@ const animate = () => {
 
 ///// display score & maxscore
 const displayScore = () => {
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "#1e202d";
     ctx.font = '18px monospace';
     ctx.textAlign='start';
     ctx.textBaseline='top';
