@@ -51,6 +51,20 @@ class Fruit {
 }
 
 let bareFruitArray = ['apple', 'apricot', 'avocado', 'banana', 'blackberry', 'blueberry', 'cherries', 'coconut', 'currant', 'custardapple', 'dragonfruit', 'fig', 'grapefruit', 'grapes', 'khaki', 'kiwi', 'lemon', 'lime', 'lychee', 'mango', 'medlar', 'melon', 'olives', 'orange', 'papaya', 'passionfruit', 'peach', 'pear', 'pineapple', 'plum', 'pomegranate', 'raspberry', 'strawberry', 'tangerine', 'watermelon'];
+
+//// randomize fruit array
+
+const randomize = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array
+}
+
+console.log(randomize(bareFruitArray));
+
+
 let fruitArray = [];
 bareFruitArray.forEach ((name) => {
     fruitArray.push(new Fruit(name))
@@ -289,6 +303,7 @@ window.onload = () => {
     startButton.addEventListener('click', start)
     document.getElementById("restart").onclick = () => {
         console.log("restarting");
+        randomize(bareFruitArray);
         canvas.style.display = "block";
         isGameOver = false;
         score.innerText = 0
