@@ -24,16 +24,14 @@ h1 {
     font-weight: 700;
     font-size: 3rem;
     color: #33354c ;
-    padding-bottom: 3.5%;
+    padding-bottom: 3%;
     line-height: 1em;
 }
+
 h2 {
     font-weight: 700;
     font-size: 1.4rem;
     color: #33354c ;
-}
-p {
-    padding: 3% 0;
 }
 
 .sources {
@@ -47,7 +45,7 @@ button {
     background-color: #71a88d;
     border-color: #71a88d;
     color: #33354c ;
-    margin: 20px 0;
+    margin: 3% 0;
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 700;
@@ -63,6 +61,7 @@ button {
     background-color: #f4f1de;
     border-radius: 10px;
     margin: 7% 0;
+    max-width: 500px;
 }
 
 img {
@@ -71,8 +70,45 @@ img {
 
 #gameoverscreen {
     display: none;
-    padding: 20% 5%;
+    padding: 5% 5%;
     text-align: center;
     justify-content: center;
     align-items: center;
 }
+
+.scoreboard {
+    font-size: 1.5rem;
+    padding: 5% 0;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 4%;
+    background-color: #f4f1de;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 3px solid #1e202d;
+    padding: 2%;
+    margin-top: 4%;
+    margin-bottom: 5%;
+    font-size: 1.35rem;
+    max-width: 450px;
+}
+
+.infotext {
+    font-size: 1rem;
+    font-style: oblique;
+    width: 40%;
+    display: inline;
+    line-height: 1.1rem;
+}
+
+.luckyfruit {
+    float: right;
+    width: 40%;
+    width: 150px;
+}
+
