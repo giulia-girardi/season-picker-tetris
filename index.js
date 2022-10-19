@@ -62,6 +62,8 @@ const randomize = (array) => {
     return array
 }
 
+randomize(bareFruitArray)
+
 let fruitArray = [];
 bareFruitArray.forEach ((name) => {
     fruitArray.push(new Fruit(name))
@@ -276,8 +278,7 @@ const animate = () => {
         } else {
             console.log(`gameover`)
             isGameOver = true;
-        }    
-        
+        }       
     }
 
     //// make positive feedback appear if got it right
@@ -287,15 +288,21 @@ const animate = () => {
 
     /// show game over screen if lost 
     const gameoverscreen = document.querySelector('#gameoverscreen');
+    const explanation = document.querySelector('.explanation');
     if (isGameOver) {
         cancelAnimationFrame(gameId);
         gameoverscreen.style.display = "block";
         canvas.style.display = "none";
         arrows.style.display = "none"
+        explanation.innerText = `${fruitArray[0].name.charAt(0).toUpperCase()}${fruitArray[0].name.slice(1).toLowerCase()} is in season during `
     } else {
         gameId = requestAnimationFrame(animate);
     }
 }
+
+///// explanation why lost 
+
+
 
 ///// display score & maxscore
 const displayScore = () => {
@@ -311,6 +318,8 @@ const displayScore = () => {
 //// wait to load and if start clicked, start game and reset
 window.onload = () => {
     startButton.addEventListener('click', start)
+    
+    /// restart
     document.getElementById("restart").onclick = () => {
         console.log("restarting");
         randomize(bareFruitArray);
