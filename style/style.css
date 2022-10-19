@@ -10,14 +10,14 @@ body {
     justify-content: space-around;
     align-items: center;
     font-size: 1.2rem;
-    line-height: 1.8em;
+    line-height: 1.5em;
     color: #1e202d;
 }
 
 #startscreen {
     text-align: center;
     padding: 5% 5%;
-    width: 33%;
+    width: 80%;
 }
 
 h1 {
@@ -25,6 +25,7 @@ h1 {
     font-size: 3rem;
     color: #33354c ;
     padding-bottom: 3.5%;
+    line-height: 1em;
 }
 h2 {
     font-weight: 700;
@@ -54,6 +55,7 @@ button {
 }
 
 #canvas {
+    width: 90%;
     display: none;
     justify-content: center;
     align-items: center;

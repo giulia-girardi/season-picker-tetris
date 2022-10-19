@@ -153,26 +153,21 @@ const drawSeasonBlocks = () => {
     ctx.fillText('Winter', (canvas.width - canvas.width / 4 / 2), canvas.height - (seasonBlockHeight / 2))
 }
 
-//// display positive feedback if user gets it right 
+//// positive feedback if user gets it right 
 let displayPositiveFeedback = false;
 
 const positiveFeedback = () => {
     ctx.fillStyle = "#1e202d";
-    ctx.font = '18px Nunito';
+    ctx.font = '14px Nunito';
     ctx.textAlign='center';
     ctx.textBaseline='top';
-    ctx.fillText(`Score: ${count}`, 400, 15)
-    ctx.fillText(`Max score: ${maxScore}`, 357, 40)
+    ctx.fillText('Well done!', 445, 70)
 }
 
-const disappearText = () => {
-    displayPositiveFeedback = false;
-}
-
-if (displayPositiveFeedback === true) {
-    console.log("always true")
-    setTimeout(disappearText, 3000)
-    positiveFeedback()    
+const noMoreText = () => {
+    setTimeout(() => {
+        displayPositiveFeedback = false;
+    }, 1000)
 }
 
 ///// initializing scores 
@@ -197,7 +192,7 @@ const animate = () => {
     let endSummerBeginAutumn = canvas.width / 2;
     let endAutumnBeginWinter = canvas.width / 4 * 3;
 
-    if (fruitImageBottom ==  canvasBottom) {
+    if (fruitImageBottom == canvasBottom) {
         let landed = '';
         if (fruitArray[0].x < endSpringBeginSummer) {
             landed = 'spring'
@@ -218,13 +213,20 @@ const animate = () => {
             }
             score.innerText = count;
             displayPositiveFeedback = true;
-            console.log(displayPositiveFeedback)
+            noMoreText()
         } else {
             console.log(`gameover`)
             isGameOver = true;
         }    
+        
     }
 
+    //// make positive feedback appear if got it right
+    if (displayPositiveFeedback === true) {
+        positiveFeedback()   
+    }
+
+    /// show game over screen if lost 
     const gameoverscreen = document.querySelector('#gameoverscreen');
     if (isGameOver) {
         cancelAnimationFrame(gameId);
