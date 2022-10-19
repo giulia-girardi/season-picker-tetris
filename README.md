@@ -12,6 +12,7 @@ Restart possibility.
 - Give positive feedback and list of seasons when right landing
 - Scoreboard 
 - Have 3 lives instead of game over on the first error 
+- Make fruit move faster if get one right
 
 - Make fruit appear from random x
 - Double check responsiveness 

@@ -137,6 +137,8 @@ const drawSeasonBlocks = () => {
 
 let count = 0;
 let score = document.querySelector('.score')
+let maxScore = 0;
+let maxScorePlace = document.querySelector('.maxscore');
 //console.log(score)
 
 /// create motion
@@ -172,6 +174,10 @@ const animate = () => {
         if (Season[fruitArray[0].name].includes(landed)) {
             console.log('well done')
             count = count + 1;
+            if (count > maxScore) {
+                maxScore = count;
+                maxScorePlace.innerText = maxScore;
+            }
             score.innerText = count;
             //console.log('score:' + score)
             console.log('count:' + count)
@@ -195,13 +201,15 @@ const animate = () => {
     }
 }
 
-///// display score
+///// display score & maxscore
 const displayScore = () => {
     ctx.fillStyle = "black";
     ctx.font = '18px monospace';
     ctx.textAlign='start';
     ctx.textBaseline='top';
     ctx.fillText(`Score: ${count}`, 400, 15)
+    ctx.fillText(`Max score: ${maxScore}`, 357, 40)
+
 }
 
 
