@@ -133,12 +133,6 @@ const drawSeasonBlocks = () => {
     ctx.fillRect(canvas.width/4 * 3, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
 }
 
-///// display score
-const displayScore = () => {
-    ctx.fillStyle = "black";
-    ctx.font = 'bold 18px Arial';
-    ctx.fillText("text", 350, 250)
-}
 
 
 let count = 0;
@@ -183,8 +177,8 @@ const animate = () => {
             console.log('count:' + count)
             //console.log(score)
 
-            /* ctx.font = '48px serif';
-            ctx.fillText = ('Well done!', 350, 250) */
+            ctx.font = '48px serif';
+            ctx.fillText('Well done!', 350, 250)
         } else {
             console.log(`gameover`)
             isGameOver = true;
@@ -201,6 +195,14 @@ const animate = () => {
     }
 }
 
+///// display score
+const displayScore = () => {
+    ctx.fillStyle = "black";
+    ctx.font = '18px monospace';
+    ctx.textAlign='start';
+    ctx.textBaseline='top';
+    ctx.fillText(`Score: ${count}`, 400, 15)
+}
 
 
 

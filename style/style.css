@@ -4,7 +4,7 @@
 }
 body {
     display: flex;
-    padding: 40px 100px;
+    padding: 40px 5%;
     font-family: Nunito, sans-serif;
     background-color: #e07a5f;
     justify-content: space-around;
@@ -69,7 +69,7 @@ img {
 
 #gameoverscreen {
     display: none;
-    padding: 20% 30px;
+    padding: 20% 5%;
     text-align: center;
     justify-content: center;
     align-items: center;
