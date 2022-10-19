@@ -128,28 +128,28 @@ const drawSeasonBlocks = () => {
     ctx.fillStyle = "#1e202d";
     ctx.textBaseline='middle';
     ctx.textAlign='center';
-    ctx.font = '18px monospace';
+    ctx.font = '18px Nunito';
     ctx.fillText('Spring', (canvas.width/4) / 2, canvas.height - (seasonBlockHeight / 2))
-    ctx.fillStyle = "orange";
+    ctx.fillStyle = "#81b29a";
     ctx.fillRect(canvas.width/4, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
     ctx.fillStyle = "#1e202d";
     ctx.textBaseline='middle';
     ctx.textAlign='center';
-    ctx.font = '18px monospace';
+    ctx.font = '18px Nunito';
     ctx.fillText('Summer', (canvas.width / 2 / 4 * 3), canvas.height - (seasonBlockHeight / 2))
-    ctx.fillStyle = "brown";
+    ctx.fillStyle = "#f2cc8f";
     ctx.fillRect(canvas.width/4 * 2, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
     ctx.fillStyle = "#1e202d";
     ctx.textBaseline='middle';
     ctx.textAlign='center';
-    ctx.font = '18px monospace';
+    ctx.font = '18px Nunito';
     ctx.fillText('Autumn', (canvas.width / 2 / 4 * 5), canvas.height - (seasonBlockHeight / 2))
     ctx.fillStyle = "lightgray";
     ctx.fillRect(canvas.width/4 * 3, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
     ctx.fillStyle = "#1e202d";
     ctx.textBaseline='middle';
     ctx.textAlign='center';
-    ctx.font = '18px monospace';
+    ctx.font = '18px Nunito';
     ctx.fillText('Winter', (canvas.width - canvas.width / 4 / 2), canvas.height - (seasonBlockHeight / 2))
 }
 
@@ -163,7 +163,7 @@ let displayPositiveFeedback = false;
 
 const positiveFeedback = () => {
     ctx.fillStyle = "#1e202d";
-    ctx.font = '18px monospace';
+    ctx.font = '18px Nunito';
     ctx.textAlign='center';
     ctx.textBaseline='top';
     ctx.fillText(`Score: ${count}`, 400, 15)
@@ -241,11 +241,11 @@ const animate = () => {
 ///// display score & maxscore
 const displayScore = () => {
     ctx.fillStyle = "#1e202d";
-    ctx.font = '18px monospace';
+    ctx.font = '18px Nunito';
     ctx.textAlign='start';
     ctx.textBaseline='top';
-    ctx.fillText(`Score: ${count}`, 400, 15)
-    ctx.fillText(`Max score: ${maxScore}`, 357, 40)
+    ctx.fillText(`Score: ${count}`, 418, 15)
+    ctx.fillText(`Max score: ${maxScore}`, 381, 40)
 
 }
 
