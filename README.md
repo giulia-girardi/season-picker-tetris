@@ -11,8 +11,6 @@ Restart possibility.
 # Backlog
 - Give positive feedback and list of seasons when right landing
 - Have 3 lives instead of game over on the first error 
-- Make fruit appear from random x
-
 - Make fruit move faster if get one right
 - Vegetable 
 - Fruits stacked like tetris in the right section of the screen

@@ -62,9 +62,6 @@ const randomize = (array) => {
     return array
 }
 
-console.log(randomize(bareFruitArray));
-
-
 let fruitArray = [];
 bareFruitArray.forEach ((name) => {
     fruitArray.push(new Fruit(name))
@@ -162,34 +159,41 @@ arrowdownicon.addEventListener('touchstart', event => {
 
 ///// draw season blocks 
 const drawSeasonBlocks = () => {
-    ctx.fillStyle = "pink";
+    //winter
+    ctx.fillStyle = "lightgray";
     ctx.fillRect(0, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
     ctx.fillStyle = "#1e202d";
     ctx.textBaseline='middle';
     ctx.textAlign='center';
     ctx.font = '18px Nunito';
-    ctx.fillText('Spring', (canvas.width/4) / 2, canvas.height - (seasonBlockHeight / 2))
-    ctx.fillStyle = "#81b29a";
+    ctx.fillText('Winter', (canvas.width/4) / 2, canvas.height - (seasonBlockHeight / 2))
+
+    //spring
+    ctx.fillStyle = "pink";
     ctx.fillRect(canvas.width/4, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
     ctx.fillStyle = "#1e202d";
     ctx.textBaseline='middle';
     ctx.textAlign='center';
     ctx.font = '18px Nunito';
-    ctx.fillText('Summer', (canvas.width / 2 / 4 * 3), canvas.height - (seasonBlockHeight / 2))
-    ctx.fillStyle = "#f2cc8f";
+    ctx.fillText('Spring', (canvas.width / 2 / 4 * 3), canvas.height - (seasonBlockHeight / 2))
+    
+    //summer
+    ctx.fillStyle = "#81b29a";
     ctx.fillRect(canvas.width/4 * 2, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
     ctx.fillStyle = "#1e202d";
     ctx.textBaseline='middle';
     ctx.textAlign='center';
     ctx.font = '18px Nunito';
-    ctx.fillText('Autumn', (canvas.width / 2 / 4 * 5), canvas.height - (seasonBlockHeight / 2))
-    ctx.fillStyle = "lightgray";
+    ctx.fillText('Summer', (canvas.width / 2 / 4 * 5), canvas.height - (seasonBlockHeight / 2))
+    
+    //autumn
+    ctx.fillStyle = "#f2cc8f";
     ctx.fillRect(canvas.width/4 * 3, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
     ctx.fillStyle = "#1e202d";
     ctx.textBaseline='middle';
     ctx.textAlign='center';
     ctx.font = '18px Nunito';
-    ctx.fillText('Winter', (canvas.width - canvas.width / 4 / 2), canvas.height - (seasonBlockHeight / 2))
+    ctx.fillText('Autumn', (canvas.width - canvas.width / 4 / 2), canvas.height - (seasonBlockHeight / 2))
 }
 
 //// positive feedback if user gets it right 
@@ -237,21 +241,27 @@ const animate = () => {
     let canvasBottom = canvas.height - seasonBlockHeight;
     let fruitImageBottom = fruitArray[0].y + fruitImageHeight;
     let fruitMaxX = fruitArray[0].x + fruitImageWidth;
-    let endSpringBeginSummer = canvas.width / 4;
-    let endSummerBeginAutumn = canvas.width / 2;
-    let endAutumnBeginWinter = canvas.width / 4 * 3;
+    let endWinterBeginSpring = canvas.width / 4;
+    let endSpringBeginSummer = canvas.width / 2;
+    let endSummerBeginAutumn = canvas.width / 4 * 3;
+
+
 
     if (fruitImageBottom == canvasBottom) {
         let landed = '';
-        if (fruitArray[0].x < endSpringBeginSummer) {
+        if (fruitArray[0].x < endWinterBeginSpring) {
+            landed = 'winter'
+        } else if ((fruitArray[0].x > endWinterBeginSpring) && (fruitMaxX < endSpringBeginSummer)) {
             landed = 'spring'
         } else if ((fruitArray[0].x > endSpringBeginSummer) && (fruitMaxX < endSummerBeginAutumn)) {
             landed = 'summer'
-        } else if ((fruitArray[0].x > endSummerBeginAutumn) && (fruitMaxX < endAutumnBeginWinter)) {
+        } else if (fruitArray[0].x > endSummerBeginAutumn) {
             landed = 'autumn'
-        } else if (fruitArray[0].x > endAutumnBeginWinter) {
-            landed = 'winter'
         }
+
+        console.log('landed:' + landed )
+        console.log((Object.values(Season[fruitArray[0].name])));
+
 
         if (Season[fruitArray[0].name].includes(landed)) {
             console.log('well done')
