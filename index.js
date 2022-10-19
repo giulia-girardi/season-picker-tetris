@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
 const startscreen = document.querySelector('#startscreen');
 
+const arrows = document.querySelector('.mobilearrows');
 let startButton = document.querySelector('#start')
 let restartButton = document.querySelector('#restart')
 let isGameOver = false;
@@ -94,11 +95,14 @@ const Season = {
     'watermelon': ['summer'],
 }
 
-
 /////// start
 const start = () => {
     canvas.style.display = "block";
     startscreen.style.display = "none";
+    console.log(window.screen.width)
+    if (window.screen.width < 800) {
+        arrows.style.display = "flex"
+    }
     animate()
 }
 
@@ -120,6 +124,27 @@ document.addEventListener('keydown', event => {
         fruitArray[0].fastDown()
     }
 })
+
+
+/// moving image down / right / left on touch for mobile
+const arrowrighticon = document.querySelector('#arrowrighticon');
+const arrowlefticon = document.querySelector('#arrowlefticon');
+const arrowdownicon = document.querySelector('#arrowdownicon');
+
+arrowrighticon.addEventListener('touchstart', event => {
+    fruitArray[0].moveRight()
+    console.log("itworks right")
+})
+arrowlefticon.addEventListener('touchstart', event => {
+    console.log("itworks left")
+    fruitArray[0].moveLeft()
+})
+arrowdownicon.addEventListener('touchstart', event => {
+    fruitArray[0].fastDown()
+    console.log("itworks down")
+})
+
+
 
 ///// draw season blocks 
 const drawSeasonBlocks = () => {
@@ -242,6 +267,7 @@ const animate = () => {
         cancelAnimationFrame(gameId);
         gameoverscreen.style.display = "block";
         canvas.style.display = "none";
+        arrows.style.display = "none"
     } else {
         gameId = requestAnimationFrame(animate);
     }

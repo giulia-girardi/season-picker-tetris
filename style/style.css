@@ -18,6 +18,7 @@ body {
     text-align: center;
     padding: 5% 5%;
     width: 80%;
+    max-width: 600px;
 }
 
 h1 {
@@ -110,5 +111,26 @@ img {
     float: right;
     width: 40%;
     width: 150px;
+}
+
+.mobilearrows {
+    display: none;
+}
+
+.canvasscreen {
+    display: flex;
+    font-size: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+.canvasscreen  p {
+    padding: 10px 30px;
+}
+@media (min-width: 800px) {
+    .mobilearrows {
+        display: none;
+    }
 }
 
