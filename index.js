@@ -70,7 +70,7 @@ bareFruitArray.forEach ((name) => {
 })
 
 /// define seasons 
-const Season = { 
+const season = { 
     'apple': ['autumn', 'winter'],
     'apricot': ['spring', 'summer'],
     'avocado': ['autumn', 'winter', 'spring'],
@@ -160,7 +160,7 @@ arrowdownicon.addEventListener('touchstart', event => {
 
 
 ///// draw season blocks 
-const drawSeasonBlocks = () => {
+const drawseasonBlocks = () => {
     //winter
     ctx.fillStyle = "lightgray";
     ctx.fillRect(0, canvas.height - seasonBlockHeight, canvas.width/4, seasonBlockHeight);
@@ -233,7 +233,7 @@ let maxScorePlace = document.querySelector('.maxscore');
 /// create motion
 const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawSeasonBlocks();
+    drawseasonBlocks();
     displayScore()
     drawImage();
     fruitArray[0].moveImageDown();
@@ -262,10 +262,10 @@ const animate = () => {
         }
 
         console.log('landed:' + landed )
-        console.log((Object.values(Season[fruitArray[0].name])));
+        console.log((Object.values(season[fruitArray[0].name])));
 
 
-        if (Season[fruitArray[0].name].includes(landed)) {
+        if (season[fruitArray[0].name].includes(landed)) {
             console.log('well done')
             count = count + 1;
             if (count > maxScore) {
@@ -294,7 +294,7 @@ const animate = () => {
         gameoverscreen.style.display = "block";
         canvas.style.display = "none";
         arrows.style.display = "none"
-        explanation.innerText = `${fruitArray[0].name.charAt(0).toUpperCase()}${fruitArray[0].name.slice(1).toLowerCase()} is in season during `
+        explanation.innerText = `${fruitArray[0].name.charAt(0).toUpperCase()}${fruitArray[0].name.slice(1).toLowerCase()}s are in season during: ${Object.values(season[fruitArray[0].name]).join(', ')} `
     } else {
         gameId = requestAnimationFrame(animate);
     }
