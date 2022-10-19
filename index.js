@@ -153,11 +153,6 @@ const drawSeasonBlocks = () => {
     ctx.fillText('Winter', (canvas.width - canvas.width / 4 / 2), canvas.height - (seasonBlockHeight / 2))
 }
 
-let count = 0;
-let score = document.querySelector('.score')
-let maxScore = 0;
-let maxScorePlace = document.querySelector('.maxscore');
-
 //// display positive feedback if user gets it right 
 let displayPositiveFeedback = false;
 
@@ -180,6 +175,11 @@ if (displayPositiveFeedback === true) {
     positiveFeedback()    
 }
 
+///// initializing scores 
+let count = 0;
+let score = document.querySelector('.score')
+let maxScore = 0;
+let maxScorePlace = document.querySelector('.maxscore');
 
 /// create motion
 const animate = () => {
@@ -189,9 +189,7 @@ const animate = () => {
     drawImage();
     fruitArray[0].moveImageDown();
 
-    //console.log(fruitArray[0]);
-
-    /// gameover logic
+    ///// win and lose logic
     let canvasBottom = canvas.height - seasonBlockHeight;
     let fruitImageBottom = fruitArray[0].y + fruitImageHeight;
     let fruitMaxX = fruitArray[0].x + fruitImageWidth;
@@ -199,7 +197,6 @@ const animate = () => {
     let endSummerBeginAutumn = canvas.width / 2;
     let endAutumnBeginWinter = canvas.width / 4 * 3;
 
-    ///// win and lose logic
     if (fruitImageBottom ==  canvasBottom) {
         let landed = '';
         if (fruitArray[0].x < endSpringBeginSummer) {
@@ -249,15 +246,14 @@ const displayScore = () => {
 
 }
 
-
-
-//// wait to load and if start clicked, start game
+//// wait to load and if start clicked, start game and reset
 window.onload = () => {
     startButton.addEventListener('click', start)
     document.getElementById("restart").onclick = () => {
         console.log("restarting");
         canvas.style.display = "block";
         isGameOver = false;
+        score.innerText = 0
         count = 0;
         fruitArray = [];
         bareFruitArray.forEach ((name) => {
