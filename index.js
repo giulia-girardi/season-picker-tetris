@@ -170,6 +170,15 @@ const noMoreText = () => {
     }, 1000)
 }
 
+///// make fruit name appear 
+const fruitName = () => {
+    ctx.fillStyle = "#1e202d";
+    ctx.textBaseline='end';
+    ctx.textAlign='start';
+    ctx.font = '18px Nunito';
+    ctx.fillText(`${fruitArray[0].name.charAt(0).toUpperCase()}${fruitArray[0].name.slice(1).toLowerCase()}`, 15, 15)
+}
+
 ///// initializing scores 
 let count = 0;
 let score = document.querySelector('.score')
@@ -183,6 +192,7 @@ const animate = () => {
     displayScore()
     drawImage();
     fruitArray[0].moveImageDown();
+    fruitName();
 
     ///// win and lose logic
     let canvasBottom = canvas.height - seasonBlockHeight;
