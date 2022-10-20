@@ -17,7 +17,6 @@ soundWin.volume = 0.05;
 let soundLose = new Audio('./style/button-10.mp3')
 soundLose.volume = 0.05;
 
-
 ///// creating the fruit class 
 class Fruit {
     constructor(name) {

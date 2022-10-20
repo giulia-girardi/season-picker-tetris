@@ -9,7 +9,7 @@ Game is over in case fruit is positioned in the wrong season.
 Restart possibility. 
 
 # Backlog
-- Have 3 lives instead of game over on the first error 
+- Show next upcoming fruit
 - Vegetables version
 - Fruits stacked like tetris in the right section of the screen
 
@@ -35,6 +35,6 @@ Restart possibility.
 - Gameover 
 
 # Links 
- - [Slides]
+ - [Slides](https://docs.google.com/presentation/d/1xy3JJltZZV3g8j0UQgg9Cz3yZ0EPDu3vI63wZINiYTw/edit?usp=sharing)
  - [Github](https://github.com/giulia-girardi/season-picker-tetris)
  - [Live version](https://giulia-girardi.github.io/season-picker-tetris/)
