@@ -283,14 +283,13 @@ const animate = () => {
             maxScorePlace.innerText = maxScore;
         }
         score.innerText = count;
-        console.log('welldone')
         displayPositiveFeedback = true;
         noMoreText()
         soundWin.play()
     }   
     //// make positive feedback appear if got it right
     if (displayPositiveFeedback === true) {
-        positiveFeedback()   
+        positiveFeedback()   qqqqqq
     }
 
     /// show game over screen if lost 
