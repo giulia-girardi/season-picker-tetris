@@ -174,6 +174,9 @@ const restart = () => {
 ///////  draw fruit images
 const drawImage = () => {
     ctx.drawImage(fruitArray[0].image, fruitArray[0].x, fruitArray[0].y, fruitImageWidth, fruitImageHeight)  
+    if (fruitArray[0].y + fruitImageHeight > canvas.height - seasonBlockHeight) {
+        fruitArray.shift()
+    }   
 }
 
 /// moving image down / right / left on arrowkey
@@ -253,7 +256,7 @@ const animate = () => {
     let endSpringBeginSummer = canvas.width / 2;
     let endSummerBeginAutumn = canvas.width / 4 * 3;
 
-    if (fruitImageBottom >= canvasBottom) {
+    if (fruitImageBottom == canvasBottom) {
         let landed = '';
         if (fruitArray[0].x < endWinterBeginSpring) {
             landed = 'winter'
@@ -272,11 +275,9 @@ const animate = () => {
                 maxScorePlace.innerText = maxScore;
             }
             score.innerText = count;
+            console.log('welldone')
             displayPositiveFeedback = true;
             noMoreText()
-            if (fruitArray[0].y + fruitImageHeight > canvas.height - seasonBlockHeight) {
-                fruitArray.shift()
-            }   
         } else {
             isGameOver = true;
         }       
