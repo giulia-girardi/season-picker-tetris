@@ -1,15 +1,12 @@
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
-ctx.imageSmoothingEnabled = false;
-const startscreen = document.querySelector('#startscreen');
 
+const startscreen = document.querySelector('#startscreen');
 const arrows = document.querySelector('.mobilearrows');
 let startButton = document.querySelector('#start')
 let restartButton = document.querySelector('#restart')
 let isGameOver = false;
 let gameId = 0;
-let fruitImageX = canvas.width / 2 - 20;
-let fruitImageY = 0;
 let fruitImageWidth = 60;
 let fruitImageHeight = 60
 let seasonBlockHeight = 40;
@@ -20,7 +17,7 @@ class Fruit {
         this.name = name;
         this.image = new Image;
         this.image.src = `./style/images/${name}.png`;
-        this.x = canvas.width / 2 - 20;
+        this.x = canvas.width / 2 - 30;
         this.y = -100;
         this.season = '';
     }
@@ -122,9 +119,6 @@ const start = () => {
 ///////  draw fruit images
 const drawImage = () => {
     ctx.drawImage(fruitArray[0].image, fruitArray[0].x, fruitArray[0].y, fruitImageWidth, fruitImageHeight)  
-    if (fruitArray[0].y + fruitImageHeight > canvas.height - seasonBlockHeight) {
-        fruitArray.shift()
-    }   
 }
 
 /// moving image down / right / left on arrowkey
@@ -252,7 +246,7 @@ const animate = () => {
 
 
 
-    if (fruitImageBottom == canvasBottom) {
+    if (fruitImageBottom >= canvasBottom) {
         let landed = '';
         if (fruitArray[0].x < endWinterBeginSpring) {
             landed = 'winter'
@@ -278,6 +272,9 @@ const animate = () => {
             score.innerText = count;
             displayPositiveFeedback = true;
             noMoreText()
+            if (fruitArray[0].y + fruitImageHeight > canvas.height - seasonBlockHeight) {
+                fruitArray.shift()
+            }   
         } else {
             console.log(`gameover`)
             isGameOver = true;
