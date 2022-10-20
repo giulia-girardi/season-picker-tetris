@@ -300,10 +300,6 @@ const animate = () => {
     }
 }
 
-///// explanation why lost 
-
-
-
 ///// display score & maxscore
 const displayScore = () => {
     ctx.fillStyle = "#1e202d";
@@ -312,7 +308,6 @@ const displayScore = () => {
     ctx.textBaseline='top';
     ctx.fillText(`Score: ${count}`, 418, 15)
     ctx.fillText(`Max score: ${maxScore}`, 381, 40)
-
 }
 
 //// wait to load and if start clicked, start game and reset
@@ -324,6 +319,7 @@ window.onload = () => {
         console.log("restarting");
         randomize(bareFruitArray);
         canvas.style.display = "block";
+        arrows.style.display = "flex"
         isGameOver = false;
         score.innerText = 0
         count = 0;
