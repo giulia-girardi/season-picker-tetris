@@ -2,6 +2,7 @@ const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
 
 const startscreen = document.querySelector('#startscreen');
+let winscreen = document.querySelector('#winscreen');
 const arrows = document.querySelector('.mobilearrows');
 let startButton = document.querySelector('#start')
 let restartButton = document.querySelector('#restart')
@@ -54,7 +55,7 @@ class Fruit {
 }
 
 let bareFruitArray = ['apple', 'apricot', 'avocado', 'banana', 'blackberry', 'blueberry', 'cherries', 'coconut', 'currant', 'custardapple', 'dragonfruit', 'fig', 'grapefruit', 'grapes', 'khaki', 'kiwi', 'lemon', 'lime', 'lychee', 'mango', 'medlar', 'melon', 'olives', 'orange', 'papaya', 'passionfruit', 'peach', 'pear', 'pineapple', 'plum', 'pomegranate', 'raspberry', 'strawberry', 'tangerine', 'watermelon'];
-
+console.log(bareFruitArray)
 //// randomize fruit array
 const randomize = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -64,6 +65,7 @@ const randomize = (array) => {
     return array
 }
 randomize(bareFruitArray)
+console.log(randomize(bareFruitArray))
 
 let fruitArray = [];
 bareFruitArray.forEach ((name) => {
@@ -246,50 +248,61 @@ let maxScorePlace = document.querySelector('.maxscore');
 const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawseasonBlocks();
-    displayScore()
-    drawImage();
-    fruitArray[0].moveImageDown();
-    fruitName();
+    displayScore();
 
-    ///// win and lose logic
-    let fruitImageBottom = fruitArray[0].y + fruitImageHeight;
-    let fruitMaxX = fruitArray[0].x + fruitImageWidth;
-    let endWinterBeginSpring = canvas.width / 4;
-    let endSpringBeginSummer = canvas.width / 2;
-    let endSummerBeginAutumn = canvas.width / 4 * 3;
+    if (fruitArray.length == 0) {
+        cancelAnimationFrame(gameId);
+        canvas.style.display = "none";
+        winscreen.style.display = "flex";
+        console.log('no more')
+    } else {
+        drawImage();
+        fruitArray[0].moveImageDown();
+        fruitName();
 
-    if (fruitImageBottom >= canvasBottom) {
-        let landed = '';
-        if (fruitArray[0].x < endWinterBeginSpring) {
-            landed = 'winter'
-        } else if ((fruitArray[0].x > endWinterBeginSpring) && (fruitMaxX < endSpringBeginSummer)) {
-            landed = 'spring'
-        } else if ((fruitArray[0].x > endSpringBeginSummer) && (fruitMaxX < endSummerBeginAutumn)) {
-            landed = 'summer'
-        } else if (fruitArray[0].x > endSummerBeginAutumn) {
-            landed = 'autumn'
+        ///// win and lose logic
+        let fruitImageBottom = fruitArray[0].y + fruitImageHeight;
+        let fruitMaxX = fruitArray[0].x + fruitImageWidth;
+        let endWinterBeginSpring = canvas.width / 4;
+        let endSpringBeginSummer = canvas.width / 2;
+        let endSummerBeginAutumn = canvas.width / 4 * 3;
+
+        if (fruitImageBottom >= canvasBottom) {
+            let landed = '';
+            if (fruitArray[0].x < endWinterBeginSpring) {
+                landed = 'winter'
+            } else if ((fruitArray[0].x > endWinterBeginSpring) && (fruitMaxX < endSpringBeginSummer)) {
+                landed = 'spring'
+            } else if ((fruitArray[0].x > endSpringBeginSummer) && (fruitMaxX < endSummerBeginAutumn)) {
+                landed = 'summer'
+            } else if (fruitArray[0].x > endSummerBeginAutumn) {
+                landed = 'autumn'
+            }
+
+            if (!season[fruitArray[0].name].includes(landed)) {
+                isGameOver = true;
+                soundLose.play()
+            }       
         }
 
-        if (!season[fruitArray[0].name].includes(landed)) {
-            isGameOver = true;
-            soundLose.play()
-        }       
-    }
-    if (fruitArray[0].y + fruitImageHeight > canvas.height - seasonBlockHeight) {
-        fruitArray.shift()
-        count = count + 1;
-        if (count > maxScore) {
-            maxScore = count;
-            maxScorePlace.innerText = maxScore;
+        if (fruitArray[0].y + fruitImageHeight > canvas.height - seasonBlockHeight) {
+            fruitArray.shift()
+            count = count + 1;
+            if (count > maxScore) {
+                maxScore = count;
+                maxScorePlace.innerText = maxScore;
+            }
+            score.innerText = count;
+            displayPositiveFeedback = true;
+            noMoreText()
+            soundWin.play()
         }
-        score.innerText = count;
-        displayPositiveFeedback = true;
-        noMoreText()
-        soundWin.play()
-    }   
-    //// make positive feedback appear if got it right
-    if (displayPositiveFeedback === true) {
-        positiveFeedback()   qqqqqq
+    
+        //// make positive feedback appear if got it right
+        if (displayPositiveFeedback === true) {
+            positiveFeedback()   
+        }
+
     }
 
     /// show game over screen if lost 

@@ -142,9 +142,20 @@ img {
     align-items: center;
     flex-direction: column;
 }
+
+#winscreen {
+    display: none;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5% 5%;
+}
+
 .canvasscreen  p {
     padding: 10px 30px;
 }
+
 @media (min-width: 800px) {
     .mobilearrows {
         display: none;
