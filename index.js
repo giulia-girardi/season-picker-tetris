@@ -55,7 +55,6 @@ class Fruit {
 }
 
 let bareFruitArray = ['apple', 'apricot', 'avocado', 'banana', 'blackberry', 'blueberry', 'cherries', 'coconut', 'currant', 'custardapple', 'dragonfruit', 'fig', 'grapefruit', 'grapes', 'khaki', 'kiwi', 'lemon', 'lime', 'lychee', 'mango', 'medlar', 'melon', 'olives', 'orange', 'papaya', 'passionfruit', 'peach', 'pear', 'pineapple', 'plum', 'pomegranate', 'raspberry', 'strawberry', 'tangerine', 'watermelon'];
-console.log(bareFruitArray)
 //// randomize fruit array
 const randomize = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -65,7 +64,6 @@ const randomize = (array) => {
     return array
 }
 randomize(bareFruitArray)
-console.log(randomize(bareFruitArray))
 
 let fruitArray = [];
 bareFruitArray.forEach ((name) => {
@@ -235,7 +233,16 @@ const fruitName = () => {
     ctx.textBaseline='end';
     ctx.textAlign='start';
     ctx.font = '18px Nunito';
-    ctx.fillText(`${fruitArray[0].name.charAt(0).toUpperCase()}${fruitArray[0].name.slice(1).toLowerCase()}`, 15, 15)
+    ctx.fillText(`Current: ${fruitArray[0].name.charAt(0).toUpperCase()}${fruitArray[0].name.slice(1).toLowerCase()}`, 15, 15)
+}
+
+///// make next fruit name appear
+const nextFruit = () => {
+    ctx.fillStyle = "#1e202d";
+    ctx.textBaseline='end';
+    ctx.textAlign='start';
+    ctx.font = '18px Nunito';
+    ctx.fillText(`Next up: ${fruitArray[1].name.charAt(0).toUpperCase()}${fruitArray[1].name.slice(1).toLowerCase()}`, 15, 40)
 }
 
 ///// initializing scores 
@@ -254,11 +261,13 @@ const animate = () => {
         cancelAnimationFrame(gameId);
         canvas.style.display = "none";
         winscreen.style.display = "flex";
-        console.log('no more')
     } else {
         drawImage();
         fruitArray[0].moveImageDown();
         fruitName();
+        if(fruitArray[1]) {
+            nextFruit();
+        }
 
         ///// win and lose logic
         let fruitImageBottom = fruitArray[0].y + fruitImageHeight;
