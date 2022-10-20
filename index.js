@@ -289,7 +289,7 @@ const animate = () => {
     }   
     //// make positive feedback appear if got it right
     if (displayPositiveFeedback === true) {
-        positiveFeedback()   qqqqqq
+        positiveFeedback()
     }
 
     /// show game over screen if lost 
