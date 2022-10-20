@@ -10,6 +10,7 @@ let gameId = 0;
 let fruitImageWidth = 60;
 let fruitImageHeight = 60
 let seasonBlockHeight = 40;
+let canvasBottom = canvas.height - seasonBlockHeight;
 
 ///// creating the fruit class 
 class Fruit {
@@ -23,7 +24,7 @@ class Fruit {
     }
 
     moveImageDown() {
-        if (this.y + fruitImageHeight <= canvas.height - seasonBlockHeight) {
+        if (this.y + fruitImageHeight <= canvasBottom) {
              this.y += 1;
         };
     }
@@ -41,7 +42,7 @@ class Fruit {
     };
     
     fastDown() {
-        if (this.y + fruitImageHeight <= canvas.height - seasonBlockHeight) {
+        if (this.y + fruitImageHeight <= canvasBottom) {
             this.y += 10;
         }
     }
@@ -50,7 +51,6 @@ class Fruit {
 let bareFruitArray = ['apple', 'apricot', 'avocado', 'banana', 'blackberry', 'blueberry', 'cherries', 'coconut', 'currant', 'custardapple', 'dragonfruit', 'fig', 'grapefruit', 'grapes', 'khaki', 'kiwi', 'lemon', 'lime', 'lychee', 'mango', 'medlar', 'melon', 'olives', 'orange', 'papaya', 'passionfruit', 'peach', 'pear', 'pineapple', 'plum', 'pomegranate', 'raspberry', 'strawberry', 'tangerine', 'watermelon'];
 
 //// randomize fruit array
-
 const randomize = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -58,7 +58,6 @@ const randomize = (array) => {
     }
     return array
 }
-
 randomize(bareFruitArray)
 
 let fruitArray = [];
@@ -105,57 +104,6 @@ const season = {
     'watermelon': ['summer'],
 }
 
-/////// start
-const start = () => {
-    canvas.style.display = "block";
-    startscreen.style.display = "none";
-    console.log(window.screen.width)
-    if (window.screen.width < 800) {
-        arrows.style.display = "flex"
-    }
-    animate()
-}
-
-///////  draw fruit images
-const drawImage = () => {
-    ctx.drawImage(fruitArray[0].image, fruitArray[0].x, fruitArray[0].y, fruitImageWidth, fruitImageHeight)  
-}
-
-/// moving image down / right / left on arrowkey
-document.addEventListener('keydown', event => {
-    if (event.key === 'ArrowRight') {
-        fruitArray[0].moveRight()
-    } else if (event.key === 'ArrowLeft') {
-        fruitArray[0].moveLeft()
-    } else if (event.key === 'ArrowDown') {
-        fruitArray[0].fastDown()
-    }
-})
-
-
-/// moving image down / right / left on touch for mobile
-const arrowrighticon = document.querySelector('#arrowrighticon');
-const arrowlefticon = document.querySelector('#arrowlefticon');
-const arrowdownicon = document.querySelector('#arrowdownicon');
-
-arrowrighticon.addEventListener('touchstart', event => {
-    fruitArray[0].moveRight()
-    console.log("itworks right")
-    event.preventDefault();
-})
-arrowlefticon.addEventListener('touchstart', event => {
-    console.log("itworks left")
-    fruitArray[0].moveLeft()
-    event.preventDefault();
-})
-arrowdownicon.addEventListener('touchstart', event => {
-    fruitArray[0].fastDown()
-    console.log("itworks down")
-    event.preventDefault();
-})
-
-
-
 ///// draw season blocks 
 const drawseasonBlocks = () => {
     //winter
@@ -194,6 +142,68 @@ const drawseasonBlocks = () => {
     ctx.font = '18px Nunito';
     ctx.fillText('Autumn', (canvas.width - canvas.width / 4 / 2), canvas.height - (seasonBlockHeight / 2))
 }
+
+/////// start
+const start = () => {
+    canvas.style.display = "block";
+    startscreen.style.display = "none";
+    if (window.screen.width < 800) {
+        arrows.style.display = "flex"
+    }
+    animate()
+}
+
+////////restart 
+const restart = () => {
+    randomize(bareFruitArray);
+    canvas.style.display = "block";
+    if (window.screen.width < 800) {
+        arrows.style.display = "flex"
+    }
+    isGameOver = false;
+    score.innerText = 0
+    count = 0;
+    fruitArray = [];
+    bareFruitArray.forEach ((name) => {
+        fruitArray.push(new Fruit(name))
+    })
+    gameoverscreen.style.display = "none";
+    animate()
+}
+
+///////  draw fruit images
+const drawImage = () => {
+    ctx.drawImage(fruitArray[0].image, fruitArray[0].x, fruitArray[0].y, fruitImageWidth, fruitImageHeight)  
+}
+
+/// moving image down / right / left on arrowkey
+document.addEventListener('keydown', event => {
+    if (event.key === 'ArrowRight') {
+        fruitArray[0].moveRight()
+    } else if (event.key === 'ArrowLeft') {
+        fruitArray[0].moveLeft()
+    } else if (event.key === 'ArrowDown') {
+        fruitArray[0].fastDown()
+    }
+})
+
+/// moving image down / right / left on touch for mobile
+const arrowrighticon = document.querySelector('#arrowrighticon');
+const arrowlefticon = document.querySelector('#arrowlefticon');
+const arrowdownicon = document.querySelector('#arrowdownicon');
+
+arrowrighticon.addEventListener('touchstart', event => {
+    fruitArray[0].moveRight()
+    event.preventDefault();
+})
+arrowlefticon.addEventListener('touchstart', event => {
+    fruitArray[0].moveLeft()
+    event.preventDefault();
+})
+arrowdownicon.addEventListener('touchstart', event => {
+    fruitArray[0].fastDown()
+    event.preventDefault();
+})
 
 //// positive feedback if user gets it right 
 let displayPositiveFeedback = false;
@@ -237,14 +247,11 @@ const animate = () => {
     fruitName();
 
     ///// win and lose logic
-    let canvasBottom = canvas.height - seasonBlockHeight;
     let fruitImageBottom = fruitArray[0].y + fruitImageHeight;
     let fruitMaxX = fruitArray[0].x + fruitImageWidth;
     let endWinterBeginSpring = canvas.width / 4;
     let endSpringBeginSummer = canvas.width / 2;
     let endSummerBeginAutumn = canvas.width / 4 * 3;
-
-
 
     if (fruitImageBottom >= canvasBottom) {
         let landed = '';
@@ -258,12 +265,7 @@ const animate = () => {
             landed = 'autumn'
         }
 
-        console.log('landed:' + landed )
-        console.log((Object.values(season[fruitArray[0].name])));
-
-
         if (season[fruitArray[0].name].includes(landed)) {
-            console.log('well done')
             count = count + 1;
             if (count > maxScore) {
                 maxScore = count;
@@ -276,7 +278,6 @@ const animate = () => {
                 fruitArray.shift()
             }   
         } else {
-            console.log(`gameover`)
             isGameOver = true;
         }       
     }
@@ -310,24 +311,8 @@ const displayScore = () => {
     ctx.fillText(`Max score: ${maxScore}`, 381, 40)
 }
 
-//// wait to load and if start clicked, start game and reset
+//// wait to load and start or restart
 window.onload = () => {
     startButton.addEventListener('click', start)
-    
-    /// restart
-    document.getElementById("restart").onclick = () => {
-        console.log("restarting");
-        randomize(bareFruitArray);
-        canvas.style.display = "block";
-        arrows.style.display = "flex"
-        isGameOver = false;
-        score.innerText = 0
-        count = 0;
-        fruitArray = [];
-        bareFruitArray.forEach ((name) => {
-            fruitArray.push(new Fruit(name))
-        })
-        gameoverscreen.style.display = "none";
-        animate()
-    }
+    restartButton.addEventListener('click', restart)
 }
