@@ -147,14 +147,17 @@ const arrowdownicon = document.querySelector('#arrowdownicon');
 arrowrighticon.addEventListener('touchstart', event => {
     fruitArray[0].moveRight()
     console.log("itworks right")
+    event.preventDefault();
 })
 arrowlefticon.addEventListener('touchstart', event => {
     console.log("itworks left")
     fruitArray[0].moveLeft()
+    event.preventDefault();
 })
 arrowdownicon.addEventListener('touchstart', event => {
     fruitArray[0].fastDown()
     console.log("itworks down")
+    event.preventDefault();
 })
 
 
