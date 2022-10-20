@@ -4,25 +4,37 @@ This is an educational game to learn when are fruits in season. As fruit comes d
 
 # MVP
 A different fruit appears every time at the top of the screen. 
-Allow move right, left and down with arrowkeys.
+Allow move right, left and down with arrowkeys, or using the arrow icons on mobile.
 Game is over in case fruit is positioned in the wrong season. 
 Restart possibility. 
 
 # Backlog
 - Have 3 lives instead of game over on the first error 
-- Vegetable 
+- Vegetables version
 - Fruits stacked like tetris in the right section of the screen
 
 # Data structure
+- Fruit () {this.name; this.image; this.image.src; this.x; this.y; this.season;}
+- moveImageDown()
+- moveLeft()
+- moveRight()
+- fastDown()
+- randomize()
+- start()
+- drawImage()
+- drawseasonBlocks()
+- positiveFeedback()
+- noMoreText()
+- fruitName()
+- animate()
+- displayScore()
 
 # States y States Transitions
-- Splash 
+- Start 
 - Game 
 - Gameover 
 
-# Tasks 
-
 # Links 
- - Slides 
- - Github
- - Live version
+ - [Slides]
+ - [Github](https://github.com/giulia-girardi/season-picker-tetris)
+ - [Live version](https://giulia-girardi.github.io/season-picker-tetris/)
