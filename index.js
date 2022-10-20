@@ -12,6 +12,9 @@ let fruitImageHeight = 60
 let seasonBlockHeight = 40;
 let canvasBottom = canvas.height - seasonBlockHeight;
 
+//let sound = new Audio('./power-juice.mp3')
+//sound.src = './power-juice.mp3'
+
 ///// creating the fruit class 
 class Fruit {
     constructor(name) {
@@ -174,9 +177,6 @@ const restart = () => {
 ///////  draw fruit images
 const drawImage = () => {
     ctx.drawImage(fruitArray[0].image, fruitArray[0].x, fruitArray[0].y, fruitImageWidth, fruitImageHeight)  
-    if (fruitArray[0].y + fruitImageHeight > canvas.height - seasonBlockHeight) {
-        fruitArray.shift()
-    }   
 }
 
 /// moving image down / right / left on arrowkey
@@ -256,7 +256,7 @@ const animate = () => {
     let endSpringBeginSummer = canvas.width / 2;
     let endSummerBeginAutumn = canvas.width / 4 * 3;
 
-    if (fruitImageBottom == canvasBottom) {
+    if (fruitImageBottom >= canvasBottom) {
         let landed = '';
         if (fruitArray[0].x < endWinterBeginSpring) {
             landed = 'winter'
@@ -268,21 +268,22 @@ const animate = () => {
             landed = 'autumn'
         }
 
-        if (season[fruitArray[0].name].includes(landed)) {
-            count = count + 1;
-            if (count > maxScore) {
-                maxScore = count;
-                maxScorePlace.innerText = maxScore;
-            }
-            score.innerText = count;
-            console.log('welldone')
-            displayPositiveFeedback = true;
-            noMoreText()
-        } else {
+        if (!season[fruitArray[0].name].includes(landed)) {
             isGameOver = true;
         }       
     }
-
+    if (fruitArray[0].y + fruitImageHeight > canvas.height - seasonBlockHeight) {
+        fruitArray.shift()
+        count = count + 1;
+        if (count > maxScore) {
+            maxScore = count;
+            maxScorePlace.innerText = maxScore;
+        }
+        score.innerText = count;
+        console.log('welldone')
+        displayPositiveFeedback = true;
+        noMoreText()
+    }   
     //// make positive feedback appear if got it right
     if (displayPositiveFeedback === true) {
         positiveFeedback()   
@@ -315,5 +316,6 @@ const displayScore = () => {
 //// wait to load and start or restart
 window.onload = () => {
     startButton.addEventListener('click', start)
+   // sound.play()
     restartButton.addEventListener('click', restart)
 }
