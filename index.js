@@ -12,8 +12,9 @@ let fruitImageHeight = 60
 let seasonBlockHeight = 40;
 let canvasBottom = canvas.height - seasonBlockHeight;
 
-//let sound = new Audio('./power-juice.mp3')
-//sound.src = './power-juice.mp3'
+let soundWin = new Audio('./style/button-09.mp3')
+let soundLose = new Audio('./style/button-10.mp3')
+
 
 ///// creating the fruit class 
 class Fruit {
@@ -270,6 +271,7 @@ const animate = () => {
 
         if (!season[fruitArray[0].name].includes(landed)) {
             isGameOver = true;
+            soundLose.play()
         }       
     }
     if (fruitArray[0].y + fruitImageHeight > canvas.height - seasonBlockHeight) {
@@ -283,6 +285,7 @@ const animate = () => {
         console.log('welldone')
         displayPositiveFeedback = true;
         noMoreText()
+        soundWin.play()
     }   
     //// make positive feedback appear if got it right
     if (displayPositiveFeedback === true) {
@@ -316,6 +319,5 @@ const displayScore = () => {
 //// wait to load and start or restart
 window.onload = () => {
     startButton.addEventListener('click', start)
-   // sound.play()
     restartButton.addEventListener('click', restart)
 }
